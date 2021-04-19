@@ -25,3 +25,6 @@ Moreover, some of the features in this dataset are only relevant after loans are
 After the first step of preprocessing, we have 109 features and around 0.5 million of data. Below you can explore the features and their description. TRY IT!
 
 Before starting explanatory data analysis, it is a good idea to do some data engineering and preprocessing to prepare data for analysis and modeling.
+
+
+### Dataset :  www.kaggle.com/wordsforthewise/lending-club
