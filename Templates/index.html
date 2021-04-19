@@ -1,0 +1,179 @@
+   
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style="color:blue">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h2>Lending Club analysis</h2>
+            <h3>funded_amnt_inv(The total amount committed by investors for that loan)</h3><br><input id="first" name="funded_amnt_inv" type="number " required="required">
+            <h3>int_rate(5.31 to 30.99)</h3><br><input id="second" name="int_rate" required="required">
+            <h3>emp_length(0-10 only)</h3><br><input id="second" name="emp_length" required="required">
+            <h3>annual_inc(annual income provided by the borrower during registration)</h3><br><input id="second" name="annual_inc" required="required">
+            <h3>pymnt_plan(only 0,1)</h3><br><input id="second" name="pymnt_plan" required="required">
+            <h3>dti( A ratio of borrower’s total monthly debt payments on the total debt obligations)</h3><br><input id="second" name="dti" required="required">
+            <h3>deling_2yrs</h3><br><input id="second" name="delinq_2yrs" required="required">
+            <h3>fico_range_low(660.0 to 845.0)</h3><br><input id="second" name="fico_range_low" required="required">
+            <h3>ing_last_6mths(The number of inquiries in past 6 months)</h3><br><input id="second" name="inq_last_6mths" required="required">
+            <h3>open_acc(The number of open credit lines in the borrower's credit file)</h3><br><input id="second" name="open_acc" required="required">
+            <h3>pub_rec(Number of derogatory public records)</h3><br><input id="second" name="pub_rec" required="required">
+            <h3>revol_bal(Total credit revolving balance)</h3><br><input id="second" name="revol_bal" required="required">
+            <h3>revol_util( the amount of credit the borrower is using relative to all available revolving credit.)</h3><br><input id="second" name="revol_util" required="required">
+            <h3>total_acc(total number of credit lines currently in the borrower's credit file)</h3><br><input id="second" name="total_acc" required="required">
+            <h3>initial_list_status(only 0 and 1)</h3><br><input id="second" name="initial_list_status" required="required">
+            <h3>total_rec_late_fee(Late fees received to date)</h3><br><input id="second" name="total_rec_late_fee" required="required">
+            <h3>last_pymnt_amnt(Last total payment amount received)</h3><br><input id="second" name="last_pymnt_amnt" required="required">
+            <h3>last_fico_range_high(0.0 to 850.0)</h3><br><input id="second" name="last_fico_range_high" required="required">
+            <h3>last_fico_range_low(0.0 to 845.0)</h3><br><input id="second" name="last_fico_range_low" required="required">
+            <h3>collections_12_mths_ex_med(Number of collections in 12 months excluding medical collections)</h3><br><input id="second" name="collections_12_mths_ex_med" required="required">
+            <h3>policy_code(Only1)</h3><br><input id="second" name="policy_code" required="required">
+            <h3>application_type(only 0 and 1)</h3><br><input id="second" name="application_type" required="required">
+            <h3>acc_now_dealing(The number of accounts on which the borrower is now delinquent.)</h3><br><input id="second" name="acc_now_delinq" required="required">
+            <h3>tot_coll_amt(Total collection amounts ever owed)</h3><br><input id="second" name="tot_coll_amt" required="required">
+            <h3>tot_cur_bal(Total current balance of all accounts)</h3><br><input id="second" name="tot_cur_bal" required="required">
+            <h3>total_bal_il(Total current balance of all installment accounts)</h3><br><input id="second" name="total_bal_il" required="required">
+            <h3>max_bal_bc( Maximum current balance owed on all revolving accounts)</h3><br><input id="second" name="max_bal_bc" required="required">
+            <h3>TARGET(0,1)</h3><br><input id="second" name="TARGET" required="required">
+            <h3>issue_d_month(Jan=0,Feb=1,Mar=2,Apr=3,May=4,June=5,July=6,Aug=7,Sep=8,Oct=9,Nov=10,Dec=11)</h3><br><input id="second" name="issue_d_month" required="required">
+            <h3>earliest_cr_line_month(Jan=0,Feb=1,Mar=2,Apr=3,May=4,June=5,July=6,Aug=7,Sep=8,Oct=9,Nov=10,Dec=11)</h3><br><input id="second" name="earliest_cr_line_month" required="required">
+            <h3>earliest_cr_line_year(Enter last two digit of year)</h3><br><input id="second" name="earliest_cr_line_year" required="required">
+            <h3>last_pymnt_d_month(Jan=0,Feb=1,Mar=2,Apr=3,May=4,June=5,July=6,Aug=7,Sep=8,Oct=9,Nov=10,Dec=11)</h3><br><input id="second" name="last_pymnt_d_month" required="required">
+            <h3>last_credit_pull_d_month(Jan=0,Feb=1,Mar=2,Apr=3,May=4,June=5,July=6,Aug=7,Sep=8,Oct=9,Nov=10,Dec=11)</h3><br><input id="second" name="last_credit_pull_d_month" required="required">
+            <h3>last_credit_pull_d_year(Enter last two digit of year only 2014-2018)</h3><br><input id="second" name="last_credit_pull_d_year" required="required">           
+            <br><br><button id="sub" type="submit ">Calculate the loan prediction</button>
+            <br>
+
+
+
+
+        </form>
+
+
+
+        <br><br><h3>{{ prediction_text }}<h3>
+    </div>
+
+
+
+
+    <style>
+        body {
+            background-color: white;
+            text-align: center;
+            padding: 0px;
+        }
+        
+        #research {
+            font-size: 18px;
+            width: 100px;
+            height: 23px;
+            top: 23px;
+        }
+        
+        #box {
+            border-radius: 60px;
+            border-color: 45px;
+            border-style: solid;
+            font-family: cursive;
+            text-align: center;
+            background-color: rgb(168, 131, 61);
+            font-size: medium;
+            position: absolute;
+            width: 700px;
+            bottom: 9%;
+            height: 850px;
+            right: 30%;
+            padding: 0px;
+            margin: 0px;
+            font-size: 14px;
+        }
+        
+        #fue {
+            width: 83px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 20px;
+        }
+        
+        #fue:hover {
+            background-color: coral;
+        }
+        
+        #research {
+            width: 140px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+        
+        #research:hover {
+            background-color: coral;
+        }
+        
+        #resea {
+            width: 99px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+        
+        #resea:hover {
+            background-color: coral;
+        }
+        
+        #sub {
+            width: 160px;
+            height: 50px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+        
+        #sub:hover {
+            background-color: darkcyan;
+        }
+        
+        #first {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #second {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #third {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        #third:hover{
+            background-color:coral;
+        }
+        
+        #fourth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</body>
+
+</html>
